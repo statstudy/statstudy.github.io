@@ -190,7 +190,6 @@ xv &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">
 <h2>第6题</h2>
 <p>查看并加载library(MASS)的数据bacteria，要求按照trt中的不同类别，统计“y==n”的数目。(提示：trt有三个类别，要求输出一个长度为3的数列，第一个元素是“trt==placebo”中“y==n”的观测个数，以此类推)</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
-<span class="kw">with</span>(bacteria,<span class="kw">tapply</span>((y==<span class="st">&quot;n&quot;</span>),trt,sum))-&gt;aa;aa</code></pre>
 <pre><code>## placebo    drug   drug+ 
 ##      12      18      13</code></pre>
 </div>
