@@ -20,9 +20,9 @@ output:
 
 ----------
 
-12月1日
+[MC的加速（重要性抽样IS）](doc/mc_is.html)   [pdf](doc/mc_is.pdf)
 
------------
+---------
 
 [R语言练习](doc/R_exer2.html)      [pdf](doc/R_exer2.pdf)
 
