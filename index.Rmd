@@ -26,10 +26,6 @@ output:
 
 [R语言练习](doc/R_exer2.html)      [pdf](doc/R_exer2.pdf)
 
-*******************
-
-11月24日
-
 ------------------
 
 [蒙特卡洛方法](doc/mc.html)     [pdf](doc/mc.pdf)
@@ -37,13 +33,6 @@ output:
 ------------------
 
 [因子分析](doc/factor.html)      [pdf](doc/factor.pdf)
-
-
-*******************
-
-
-
-11月10日
 
 ------------------
 
@@ -55,11 +44,11 @@ output:
 
 *******************
 
-10月27日上午 [R语言练习](doc/1.html)  
+[R语言练习](doc/1.html)  
 
 -----
 
-10月27日下午 [主成份分析](doc/multi_1_pca_.html)   [pdf版本](doc/multi_1_pca_pdf.pdf)
+[主成份分析](doc/multi_1_pca_.html)   [pdf版本](doc/multi_1_pca_pdf.pdf)
 
 -----
 
