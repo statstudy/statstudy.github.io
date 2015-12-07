@@ -63,7 +63,7 @@ output:
 
 -----
 
-[主成份分析](doc/multi_1_pca_.html)   [pdf版本](doc/multi_1_pca_pdf.pdf)
+[主成份分析](doc/multi_1_pca_.html)   [pdf](doc/multi_1_pca_pdf.pdf)
 
 -----
 
@@ -80,7 +80,7 @@ output:
 
 -----
 
-[矩阵运算by R](doc/matrix.html) (pdf 格式的在[这里](doc/matrix.pdf) )
+[矩阵运算by R](doc/matrix.html)  [pdf](doc/matrix.pdf) 
 
 -----
 
