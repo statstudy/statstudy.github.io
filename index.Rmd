@@ -7,24 +7,39 @@ output:
 ---
 -----------------
 
-*******************
+---------
 
 
+【12月29日】[分类问题](doc/clssfc.html)   [pdf](doc/clssfc.pdf)
 
-[多元正态总体的检验](doc/mean.html)   [pdf](doc/mean.pdf)
+
+---------
+
+
+【12月22日】[MCMC初步](doc/mcmc1.html)   [pdf](doc/mcmc1.pdf)
+
+
+---------
+
+
+【12月22日】[多元正态总体的检验](doc/mean.html)   [pdf](doc/mean.pdf)
+
+
+---------
+
+
+【12月15日】[R语言练习（二）](doc/R_exer2.html)      [pdf](doc/R_exer2.pdf)
 
 
 --------------
 
-[典则相关](doc/canno.html)        [pdf](doc/canno.pdf)
+【12月08日】[典则相关](doc/canno.html)        [pdf](doc/canno.pdf)
 
 ----------
 
-[MC的加速（重要性抽样IS）](doc/mc_is.html)   [pdf](doc/mc_is.pdf)
+【12月08日】[MC的加速（重要性抽样IS）](doc/mc_is.html)   [pdf](doc/mc_is.pdf)
 
----------
 
-[R语言练习](doc/R_exer2.html)      [pdf](doc/R_exer2.pdf)
 
 ------------------
 
@@ -44,7 +59,7 @@ output:
 
 *******************
 
-[R语言练习](doc/1.html)  
+[R语言练习（一）](doc/1.html)  
 
 -----
 
