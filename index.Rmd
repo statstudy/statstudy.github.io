@@ -33,11 +33,11 @@ output:
 
 --------------
 
-【12月08日】[典则相关](doc/canno.html)        [pdf](doc/canno.pdf)
+[典则相关](doc/canno.html)        [pdf](doc/canno.pdf)
 
 ----------
 
-【12月08日】[MC的加速（重要性抽样IS）](doc/mc_is.html)   [pdf](doc/mc_is.pdf)
+[MC的加速（重要性抽样IS）](doc/mc_is.html)   [pdf](doc/mc_is.pdf)
 
 
 
