@@ -72,7 +72,7 @@ output:
 -----
 
 
-[矩阵向量求导法则(pdf 格式)](doc/matrix_de.pdf)
+[【选学】矩阵向量求导法则(pdf 格式)](doc/matrix_de.pdf)
 
 -----
 
