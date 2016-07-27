@@ -1,0 +1,19 @@
+---
+title: "爱统计 爱学习 爱思考"
+author: " "
+output: 
+  html_document: 
+    toc: yes
+---
+-----------------
+
+  
+[R 语言与多元统计分析](Rmulti.html)
+
+
+
+--------
+
+
+[卫生统计](medstat.html)
+
