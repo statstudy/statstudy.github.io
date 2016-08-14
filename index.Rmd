@@ -7,6 +7,13 @@ output:
 ---
 -----------------
 
+*强烈建议选择chrome或者360的极速浏览器，部分IE会有浏览问题。*
+
+（[这里](http://down.tech.sina.com.cn/content/40975.html)下载最新的chrome浏览器）
+
+
+------
+
   
 [R 语言与多元统计分析](Rmulti.html)
 
