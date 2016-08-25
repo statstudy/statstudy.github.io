@@ -416,11 +416,11 @@ dates &lt;-<span class="st"> </span><span class="kw">as.Date</span>(strDates, <s
 <pre><code>## [1] &quot;1965-01-05&quot; &quot;1975-08-16&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Woring with formats</span>
 today &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>();today</code></pre></div>
-<pre><code>## [1] &quot;2016-08-24&quot;</code></pre>
+<pre><code>## [1] &quot;2016-08-25&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(today, <span class="dt">format=</span><span class="st">&quot;%B %d %Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;八月 24 2016&quot;</code></pre>
+<pre><code>## [1] &quot;八月 25 2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(today, <span class="dt">format=</span><span class="st">&quot;%A&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;星期三&quot;</code></pre>
+<pre><code>## [1] &quot;星期四&quot;</code></pre>
 <div class="section level3">
 <h3>日期的计算</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculations with with dates</span>
@@ -464,10 +464,11 @@ a</code></pre></div>
 </div>
 <div class="section level2">
 <h2>数据排序</h2>
+<p>依经理人的年龄升序排序:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sorting a dataset</span>
-newdata &lt;-<span class="st"> </span>leadership[<span class="kw">order</span>(leadership$age),]
-
-<span class="kw">attach</span>(leadership)</code></pre></div>
+newdata &lt;-<span class="st"> </span>leadership[<span class="kw">order</span>(leadership$age),]</code></pre></div>
+<p>将各行依女性到男性、同样性别中按年龄升序排序:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(leadership)</code></pre></div>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
 ## 
 ##     age, gender, q1, q2, q3, q4, q5</code></pre>
@@ -479,6 +480,7 @@ newdata &lt;-<span class="st"> </span>leadership[<span class="kw">order</span>(l
 ## 1         1 10/24/08      M  32  5  4  5  5  5  Young
 ## 4         4 10/12/08      M  39  3  3  4 NA NA  Young</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">detach</span>(leadership)</code></pre></div>
+<p>依经理人的性别和年龄降序排序:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(leadership)</code></pre></div>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
 ## 
@@ -494,6 +496,7 @@ newdata &lt;-<span class="st"> </span>leadership[<span class="kw">order</span>(l
 </div>
 <div class="section level2">
 <h2>数据集的选择和合并</h2>
+<p>变量的选择的不同方法：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Selecting variables</span>
 newdata &lt;-<span class="st"> </span>leadership[, <span class="kw">c</span>(<span class="dv">6</span>:<span class="dv">10</span>)]
 
@@ -502,15 +505,19 @@ newdata &lt;-leadership[myvars]
 
 myvars &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;q&quot;</span>, <span class="dv">1</span>:<span class="dv">5</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
 newdata &lt;-<span class="st"> </span>leadership[myvars]</code></pre></div>
+<p>选择除去<code>&quot;q3&quot;, &quot;q4&quot;</code>的变量：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dropping variables</span>
-myvars &lt;-<span class="st"> </span><span class="kw">names</span>(leadership) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;q3&quot;</span>, <span class="st">&quot;q4&quot;</span>) 
-leadership[!myvars]</code></pre></div>
+myvars &lt;-<span class="st"> </span><span class="kw">names</span>(leadership) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;q3&quot;</span>, <span class="st">&quot;q4&quot;</span>)
+myvars</code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leadership[!myvars]</code></pre></div>
 <pre><code>##   managerID testDate gender age q1 q2 q5 agecat
 ## 1         1 10/24/08      M  32  5  4  5  Young
 ## 2         2 10/28/08      F  45  3  5  5  Young
 ## 3         3  10/1/08      F  25  3  5  2  Young
 ## 4         4 10/12/08      M  39  3  3 NA  Young
 ## 5         5   5/1/09      F  NA  2  2  1  Elder</code></pre>
+<p>选择男性年龄大于30的经理人：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># - Selecting observations</span>
 newdata &lt;-<span class="st"> </span>leadership[<span class="dv">1</span>:<span class="dv">3</span>,]
 newdata &lt;-<span class="st"> </span>leadership[leadership$gender==<span class="st">&quot;M&quot;</span> &amp;
@@ -521,15 +528,23 @@ newdata &lt;-<span class="st"> </span>leadership[leadership$gender==<span class=
 ##     age, gender, q1, q2, q3, q4, q5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span>leadership[gender==<span class="st">'M'</span> &amp;<span class="st"> </span>age &gt;<span class="st"> </span><span class="dv">30</span>,]
 <span class="kw">detach</span>(leadership)</code></pre></div>
+<p>将研究范围限定在2009年1月1日到2009年12月31日之间：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Selecting observations based on dates</span>
 startdate &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2009-01-01&quot;</span>)
 enddate &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2009-10-31&quot;</span>)
 newdata &lt;-<span class="st"> </span>leadership[<span class="kw">which</span>(leadership$date &gt;=<span class="st"> </span>startdate &amp;leadership$date &lt;=<span class="st"> </span>enddate),]</code></pre></div>
+<p>这里需要注意<code>which()</code>的用法。</p>
+<p>选择所有age值大于等于35或age值小于24的行，保留了变量q1到q4：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the subset() function</span>
 newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(leadership, age &gt;=<span class="st"> </span><span class="dv">35</span> |<span class="st"> </span>age &lt;<span class="st"> </span><span class="dv">24</span>,
-                  <span class="dt">select=</span><span class="kw">c</span>(q1, q2, q3, q4))
-newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(leadership, gender==<span class="st">&quot;M&quot;</span> &amp;<span class="st"> </span>age &gt;<span class="st"> </span><span class="dv">25</span>,
+                  <span class="dt">select=</span><span class="kw">c</span>(q1, q2, q3, q4))</code></pre></div>
+<p>选择所有25岁以上的男性，并保留了变量gender到q4（gender、q4和其间所有列）</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(leadership, gender==<span class="st">&quot;M&quot;</span> &amp;<span class="st"> </span>age &gt;<span class="st"> </span><span class="dv">25</span>,
                   <span class="dt">select=</span>gender:q4)</code></pre></div>
+<p><code>sample()</code>的用法：</p>
+<p>从leadership数据集中随机抽取一个大小为3的样本：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mysample &lt;-<span class="st"> </span>leadership[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(leadership), <span class="dv">3</span>, <span class="dt">replace=</span><span class="ot">FALSE</span>),]</code></pre></div>
+<p>使用SQL 语句操作数据框：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  - Using SQL statements to manipulate data frames</span>
 <span class="kw">library</span>(sqldf)</code></pre></div>
 <pre><code>## Loading required package: gsubfn</code></pre>
@@ -554,6 +569,7 @@ newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(leadership,
 ## 1   20.33    201.0    3
 ## 2   24.53    123.0    4
 ## 3   25.37    120.1    5</code></pre>
+<p>从数据框mtcars中选择所有的变量（列），保留那些使用化油器（carb）的车型（行），按照mpg对车型进行了升序排序，并将结果保存为数据框newdf。参数row.names=TRUE将原始数据框中的行名延续到了新数据框中。</p>
 </div>
 
 
