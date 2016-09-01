@@ -416,11 +416,11 @@ dates &lt;-<span class="st"> </span><span class="kw">as.Date</span>(strDates, <s
 <pre><code>## [1] &quot;1965-01-05&quot; &quot;1975-08-16&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Woring with formats</span>
 today &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>();today</code></pre></div>
-<pre><code>## [1] &quot;2016-08-28&quot;</code></pre>
+<pre><code>## [1] &quot;2016-09-01&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(today, <span class="dt">format=</span><span class="st">&quot;%B %d %Y&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;八月 28 2016&quot;</code></pre>
+<pre><code>## [1] &quot;九月 01 2016&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(today, <span class="dt">format=</span><span class="st">&quot;%A&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;星期日&quot;</code></pre>
+<pre><code>## [1] &quot;星期四&quot;</code></pre>
 <div class="section level3">
 <h3>日期的计算</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculations with with dates</span>
@@ -432,7 +432,7 @@ enddate -<span class="st"> </span>startdate</code></pre></div>
 today &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
 dob &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;1956-10-12&quot;</span>)
 <span class="kw">difftime</span>(today, dob, <span class="dt">units=</span><span class="st">&quot;weeks&quot;</span>)</code></pre></div>
-<pre><code>## Time difference of 3124 weeks</code></pre>
+<pre><code>## Time difference of 3125 weeks</code></pre>
 </div>
 <div class="section level3">
 <h3>将日期转换为字符型变量</h3>
@@ -570,7 +570,7 @@ newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(leadership,
 ## 2   24.53    123.0    4
 ## 3   25.37    120.1    5</code></pre>
 <p>从数据框mtcars中选择所有的变量（列），保留那些使用化油器（carb）的车型（行），按照mpg对车型进行了升序排序，并将结果保存为数据框newdf。参数row.names=TRUE将原始数据框中的行名延续到了新数据框中。</p>
-<p>返回<a href="http://statstudy.github.io/Rmulti.html">课程主页</a>。</p>
+<p>返回<a href="https://statstudy.github.io/Rmulti.html">课程主页</a>。</p>
 </div>
 
 
