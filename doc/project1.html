@@ -130,6 +130,15 @@ $(document).ready(function () {
 <blockquote>
 <p>写一个三个参数的函数<code>data_mean(dir,pollutant,1:332)</code>能够返回相应观测站 <code>pollutant</code> 的均值。dir 是数据所在的目录，<code>pollutant</code> 是 <code>sulfate</code> 或者 <code>nitrate</code></p>
 </blockquote>
+<p>提示：可能用到的函数：</p>
+<ul>
+<li>paste</li>
+<li>formatC</li>
+<li>read.csv</li>
+<li>is.na</li>
+<li>sapply</li>
+<li>unlist</li>
+</ul>
 <pre class="r"><code>data_mean(&quot;pollution_data&quot;,&quot;sulfate&quot;,1:10)</code></pre>
 <pre><code>## [1] 4.064</code></pre>
 <pre class="r"><code>data_mean(&quot;pollution_data&quot;, &quot;nitrate&quot;, 67:72)</code></pre>
