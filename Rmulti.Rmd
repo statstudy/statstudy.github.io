@@ -9,22 +9,77 @@ output:
 -----------------
 
 
-二维码手机访问：
+二维码访问：
 
-![](http://pic.yupoo.com/stat11/FJMBY17w/small.jpg)
+![](addr1.png)
 
 ----------------
 
-[R 的安装](doc/R_setup.html)
+（8月29日） [R 的安装](doc/R_setup.html)
 
  
 --------
 
-[John Chambers 的采访](http://pan.baidu.com/s/1kVjOHhX)
+（课下）[John Chambers 的采访](http://pan.baidu.com/s/1kVjOHhX)
 [字幕srt](http://pan.baidu.com/s/1geSvUDH)
 
 ---
 
-[R 语言概述](doc/R_base_1.html)
+（8月30日）[R 语言概述](doc/R_base_1.html)
 
 -----
+
+（9月1日） [R 语言基础（一）：语法基础](doc/R_base_2.html)
+
+-----
+
+ [R 语言练习（一）](doc/R_base_exer1(修正3).pdf)  [答案](doc/R_base_exer1_so.pdf)
+
+-----
+
+
+（9月12日）[R语言基础（二）：绘图初步](doc/R_base_3.html)
+
+-----
+
+（9月13日）[R语言基础（三）：数据管理](doc/R_base_4.html)
+
+----
+
+[R 语言练习（二）](doc/R_base_exer2.pdf)  （9月21号之前交）[答案](doc/R_base_exer2_so.pdf)
+
+-----
+
+（9月20日） [R语言基础（四）: 编程以及高级数据管理](doc/R_base_5.html)
+
+----
+
+（释疑）[NaN、Na、Inf 与 Null](doc/faq_nan.html)
+
+----
+
+
+（9月22日）[课程 测验 （一）](doc/project1.html)
+
+
+----
+
+[R 语言练习（三）](doc/R_base_exer3.pdf) （10月8号之前交）
+
+----
+
+
+[R语言：统计图形](doc/R_base_6.html)
+
+
+
+
+----
+
+[R语言：基本统计分析](doc/R_base_7.html)
+
+----
+
+[多元统计基础：矩阵代数](doc/algebra_base.html)
+
+----
