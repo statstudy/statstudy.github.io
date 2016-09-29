@@ -294,17 +294,8 @@ myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 </div>
 <div id="hmiscdescribe" class="section level3">
 <h3>通过Hmisc包中的describe()函数计算描述性统计量</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)</code></pre></div>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Loading required package: survival</code></pre>
-<pre><code>## Loading required package: Formula</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## 
-## Attaching package: 'Hmisc'</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)
+myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
 <span class="kw">describe</span>(mtcars[myvars])</code></pre></div>
 <pre><code>## mtcars[myvars] 
 ## 
@@ -338,17 +329,8 @@ myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 </div>
 <div id="pastecsstat.desc" class="section level3">
 <h3>通过pastecs包中的stat.desc()函数计算描述性统计量</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pastecs)</code></pre></div>
-<pre><code>## Loading required package: boot</code></pre>
-<pre><code>## 
-## Attaching package: 'boot'</code></pre>
-<pre><code>## The following object is masked from 'package:survival':
-## 
-##     aml</code></pre>
-<pre><code>## The following object is masked from 'package:lattice':
-## 
-##     melanoma</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pastecs)
+myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
 <span class="kw">stat.desc</span>(mtcars[myvars])</code></pre></div>
 <pre><code>##                  mpg        hp       wt
 ## nbr.val       32.000   32.0000  32.0000
@@ -368,19 +350,8 @@ myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 </div>
 <div id="psychdescribe" class="section level3">
 <h3>通过psych包中的describe()计算描述性统计量</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(psych)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'psych'</code></pre>
-<pre><code>## The following object is masked from 'package:boot':
-## 
-##     logit</code></pre>
-<pre><code>## The following object is masked from 'package:Hmisc':
-## 
-##     describe</code></pre>
-<pre><code>## The following objects are masked from 'package:ggplot2':
-## 
-##     %+%, alpha</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(psych)
+myvars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)
 <span class="kw">describe</span>(mtcars[myvars])</code></pre></div>
 <pre><code>##     vars  n   mean    sd median trimmed   mad   min    max  range skew
 ## mpg    1 32  20.09  6.03  19.20   19.70  5.41 10.40  33.90  23.50 0.61
@@ -499,9 +470,8 @@ dfm &lt;-<span class="st"> </span><span class="kw">melt</span>(mtcars, <span cla
 <div class="section level2">
 <h2>频数表和列联表</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># frequency tables</span>
-<span class="kw">library</span>(vcd)</code></pre></div>
-<pre><code>## Loading required package: grid</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(Arthritis)</code></pre></div>
+<span class="kw">library</span>(vcd)
+<span class="kw">head</span>(Arthritis)</code></pre></div>
 <pre><code>##   ID Treatment  Sex Age Improved
 ## 1 57   Treated Male  27     Some
 ## 2 46   Treated Male  29     None
@@ -937,8 +907,7 @@ states &lt;-<span class="st"> </span><span class="kw">data.frame</span>(state.re
 ## 
 ## data:  Illiteracy by state.region
 ## Kruskal-Wallis chi-squared = 23, df = 3, p-value = 5e-05</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Listing 7.17 - Nonparametric multiple comparisons</span>
-<span class="kw">source</span>(<span class="st">&quot;http://www.statmethods.net/RiA/wmc.txt&quot;</span>)              
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://www.statmethods.net/RiA/wmc.txt&quot;</span>)              
 states &lt;-<span class="st"> </span><span class="kw">data.frame</span>(state.region, state.x77)
 <span class="kw">wmc</span>(Illiteracy ~<span class="st"> </span>state.region, <span class="dt">data=</span>states, <span class="dt">method=</span><span class="st">&quot;holm&quot;</span>)</code></pre></div>
 <pre><code>## Descriptive Statistics
