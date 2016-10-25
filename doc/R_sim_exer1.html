@@ -142,10 +142,10 @@ $(document).ready(function () {
 </ul>
 <pre class="r"><code>system.time(rnorm(100000))</code></pre>
 <pre><code>##    user  system elapsed 
-##       0       0       0</code></pre>
+##    0.02    0.00    0.02</code></pre>
 <p>显示出R执行这条语句的时间。</p>
 <ul>
-<li>3）、比较效率就是写出是三个生成随机数的函数，分别执行<code>system.time()</code>生成相同多的随机数（建议n至少取100000），看那个函数使用的时间少。</li>
+<li>3）、比较效率就是写出是三个生成随机数的函数，分别执行<code>system.time()</code>生成相同多的随机数（建议n至少取100000），看哪个函数使用的时间少。</li>
 </ul>
 </div>
 
