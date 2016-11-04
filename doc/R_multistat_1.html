@@ -247,6 +247,8 @@ div.tocify {
 </div>
 
 
+<p>需要安装的包：</p>
+<pre><code>install.packages(c(&quot;mvtnorm&quot;,&quot;ICSNP&quot;,&quot;biotools&quot;))</code></pre>
 <div class="section level2">
 <h2>一元正态分布</h2>
 <div class="section level3">
@@ -492,8 +494,60 @@ d</code></pre></div>
 <pre><code>##  [1] 9.0287361 2.5481132 0.8979442 6.3739058 4.6528524 6.4608693 4.5631305
 ##  [8] 1.5795960 1.8592906 2.4199926 1.9477228 0.8861995 2.0050976 3.3637016
 ## [15] 0.8285416 0.6302038 2.5524763 0.3783315 1.7955249 2.2277698</code></pre>
-<p>返回<a href="https://statstudy.github.io/Rmulti.html">课程主页</a>。</p>
 </div>
+</div>
+<div class="section level2">
+<h2>多元随机向量随机数的抽取</h2>
+<p>例：要从总体均值为（2，3），协方差阵为： <span class="math display">\[
+\begin{pmatrix}
+2&amp;1\\
+1&amp;2
+\end{pmatrix}
+\]</span> 抽取1000个随机向量。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="dt">nrow=</span><span class="dv">2</span>,<span class="dt">ncol=</span><span class="dv">2</span>);A</code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    2    1
+## [2,]    1    2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mvtnorm)
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+X&lt;-<span class="kw">rmvnorm</span>(<span class="dv">1000</span>, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>),A)
+<span class="kw">head</span>(X)</code></pre></div>
+<pre><code>##          [,1]     [,2]
+## [1,] 1.150125 2.480423
+## [2,] 4.155043 3.666843
+## [3,] 2.804368 5.390145
+## [4,] 2.166579 1.440601
+## [5,] 0.898618 2.139809
+## [6,] 3.803828 3.939560</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cov</span>(X)</code></pre></div>
+<pre><code>##           [,1]      [,2]
+## [1,] 1.8490873 0.8629169
+## [2,] 0.8629169 2.0184171</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(X)</code></pre></div>
+<pre><code>##          [,1]     [,2]
+## [1,] 1.000000 0.446668
+## [2,] 0.446668 1.000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(X)</code></pre></div>
+<pre><code>##        V1               V2        
+##  Min.   :-1.999   Min.   :-0.762  
+##  1st Qu.: 1.124   1st Qu.: 2.083  
+##  Median : 2.144   Median : 3.061  
+##  Mean   : 2.060   Mean   : 3.041  
+##  3rd Qu.: 2.909   3rd Qu.: 4.042  
+##  Max.   : 6.858   Max.   : 8.328</code></pre>
+</div>
+<div class="section level2">
+<h2>多元正态性检验</h2>
+<p>例：检验上述例子是否来自正态总体。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ICS)
+<span class="kw">mvnorm.kur.test</span>(X, <span class="dt">method =</span> <span class="st">&quot;satt&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  Multivariate Normality Test Based on Kurtosis
+## 
+## data:  X
+## W = 1.094, w1 = 1.5, df1 = 2.0, w2 = 2.0, df2 = 1.0, p-value =
+## 0.8799</code></pre>
+<p>返回<a href="https://statstudy.github.io/Rmulti.html">课程主页</a>。</p>
 </div>
 
 
