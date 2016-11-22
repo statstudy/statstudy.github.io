@@ -296,7 +296,7 @@ R_{YX}&amp; R_{YY}\end{bmatrix}=\begin{bmatrix}\sum XX&amp; \sum XY\\
 <h2>典型相关系数的检验</h2>
 <p>典型相关分析是否恰当，应该取决于两组原变量之间是否相关，如果两组变量之间毫无相关性而言，则不应该作典型相关分析。用样本来估计总体的典型相关系数是否有误，需要进行检验。</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho_1=\cdots=\rho_r=0\)</span> <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho_i\)</span> 中，至少<span class="math inline">\(\rho_1\)</span> 不为 <span class="math inline">\(0\)</span></p>
-<p>检验统计量： 不放设：<span class="math inline">\(r=min(p,q)=p\)</span> <span class="math display">\[\Lambda_0=\frac{|S|}{|S_{XX}||S_{YY}|}=\prod_{i=1}^p(1-\lambda_i^2)\]</span> <span class="math inline">\(\Lambda_0\)</span> 越小，越支持备则假设。 <span class="math display">\[Q_0=-[(n-1)-\frac{1}{2}(p+q+1)]ln \Lambda_0\]</span> 在原假设成立的条件下，<span class="math inline">\(Q_0\)</span> 服从自由度为<span class="math inline">\(p\times q\)</span> 的卡方分布。</p>
+<p>检验统计量： 不放设：<span class="math inline">\(r=min(p,q)=p\)</span> <span class="math display">\[\Lambda_0=\frac{|S|}{|S_{XX}||S_{YY}|}=\prod_{i=1}^p(1-\rho_i^2)\]</span> <span class="math inline">\(\Lambda_0\)</span> 越小，越支持备则假设。 <span class="math display">\[Q_0=-[(n-1)-\frac{1}{2}(p+q+1)]ln \Lambda_0\]</span> 在原假设成立的条件下，<span class="math inline">\(Q_0\)</span> 服从自由度为<span class="math inline">\(p\times q\)</span> 的卡方分布。</p>
 </div>
 <div class="section level2">
 <h2>实例</h2>
@@ -324,6 +324,34 @@ ex1</code></pre></div>
 ## 18 157 32 52 11 230  80
 ## 19 156 33 54 15 225  73
 ## 20 138 33 68  2 110  43</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scale</span>(ex1)</code></pre></div>
+<pre><code>##               x1         x2          x3         y1         y2         y3
+##  [1,]  0.5022173  0.1873845 -0.84600343 -0.8418021  0.2629199 -0.2008679
+##  [2,]  0.4212145  0.4996919 -0.56862526 -1.4093091 -0.5681948 -0.2008679
+##  [3,]  0.5832201  0.8119993  0.26350927  0.4823810 -0.7120415  0.5987035
+##  [4,] -0.6723232 -0.1249230  0.81826561  0.4823810 -0.6481096 -0.6494080
+##  [5,]  0.4212145 -0.1249230 -1.40075978  0.6715500  0.1510391 -0.2398714
+##  [6,]  0.1377048  0.1873845 -0.01386891 -1.0309711 -0.7120415 -0.5518993
+##  [7,]  1.3122453  0.8119993 -0.01386891 -0.2742951 -0.7120415 -0.6299063
+##  [8,] -0.4698162 -0.4372304  0.54088744 -0.6526331 -0.3284501 -0.5909028
+##  [9,] -0.1053036 -1.3741527  2.48253466  1.0498880  0.8702730 -0.5909028
+## [10,] -0.9963344 -0.7495378 -0.01386891  1.4282260  1.6854047  3.5044631
+## [11,] -0.3888134 -0.4372304 -0.84600343  1.4282260 -0.4083650 -0.6299063
+## [12,] -0.5103176 -0.7495378 -0.56862526  0.6715500  1.0301027  0.8717279
+## [13,] -0.9963344 -0.4372304  1.09564379  0.8607190  1.1100176  0.6767105
+## [14,]  2.7702957  3.3104588 -0.84600343 -1.5984781 -1.5271733 -0.3958854
+## [15,]  0.5832201  0.1873845 -1.40075978 -0.6526331 -1.2075138 -0.7664185
+## [16,]  0.9477327  0.4996919  0.81826561  0.4823810  1.0301027  0.9692366
+## [17,] -0.1053036  0.4996919 -0.29124708 -1.0309711 -1.3673435 -0.8834289
+## [18,] -0.8748302 -1.0618453 -0.56862526  0.2932120  1.3497622  0.1891669
+## [19,] -0.9153316 -0.7495378 -0.29124708  1.0498880  1.2698474  0.0526547
+## [20,] -1.6443568 -0.7495378  1.65040014 -1.4093091 -0.5681948 -0.5323976
+## attr(,&quot;scaled:center&quot;)
+##     x1     x2     x3     y1     y2     y3 
+## 178.60  35.40  56.10   9.45 145.55  70.30 
+## attr(,&quot;scaled:scale&quot;)
+##        x1        x2        x3        y1        y2        y3 
+## 24.690505  3.201973  7.210373  5.286278 62.566575 51.277470</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x=ex1[,<span class="dv">1</span>:<span class="dv">3</span>]
 y=ex1[,<span class="dv">4</span>:<span class="dv">6</span>]
 
@@ -337,6 +365,14 @@ s11=<span class="kw">cor</span>(x);s11</code></pre></div>
 ## y1 1.0000000 0.6957274 0.4957602
 ## y2 0.6957274 1.0000000 0.6692061
 ## y3 0.4957602 0.6692061 1.0000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(ex1)</code></pre></div>
+<pre><code>##            x1         x2          x3         y1         y2          y3
+## x1  1.0000000  0.8702435 -0.36576203 -0.3896937 -0.4930836 -0.22629556
+## x2  0.8702435  1.0000000 -0.35289213 -0.5522321 -0.6455980 -0.19149937
+## x3 -0.3657620 -0.3528921  1.00000000  0.1506480  0.2250381  0.03493306
+## y1 -0.3896937 -0.5522321  0.15064802  1.0000000  0.6957274  0.49576018
+## y2 -0.4930836 -0.6455980  0.22503808  0.6957274  1.0000000  0.66920608
+## y3 -0.2262956 -0.1914994  0.03493306  0.4957602  0.6692061  1.00000000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s12=<span class="kw">cor</span>(ex1)[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">4</span>:<span class="dv">6</span>];s12</code></pre></div>
 <pre><code>##            y1         y2          y3
 ## x1 -0.3896937 -0.4930836 -0.22629556
@@ -353,10 +389,60 @@ A</code></pre></div>
 ## x1 -0.24594544 -0.42556193  0.15927694
 ## x2  0.58342555  0.90714323 -0.32827241
 ## x3 -0.01679293 -0.03129267  0.01728371</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eigen</span>(A)$vectors[,<span class="dv">1</span>]</code></pre></div>
-<pre><code>## [1]  0.4404622 -0.8971428  0.0335830</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eigen</span>(A)$vectors</code></pre></div>
+<pre><code>##            [,1]       [,2]       [,3]
+## [1,]  0.4404622 -0.8428694 -0.1616014
+## [2,] -0.8971428  0.5280957  0.4281731
+## [3,]  0.0335830 -0.1033731  0.8891304</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">eigen</span>(A)$values)</code></pre></div>
 <pre><code>## [1] 0.79560815 0.20055604 0.07257029</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u1=<span class="kw">scale</span>(ex1)[,<span class="dv">1</span>:<span class="dv">3</span>]%*%<span class="kw">eigen</span>(A)$vectors[,<span class="dv">1</span>];u1</code></pre></div>
+<pre><code>##               [,1]
+##  [1,]  0.024685782
+##  [2,] -0.281862072
+##  [3,] -0.462743543
+##  [4,] -0.156579379
+##  [5,]  0.250561111
+##  [6,] -0.107922651
+##  [7,] -0.150950724
+##  [8,]  0.203486477
+##  [9,]  1.269799947
+## [10,]  0.233129134
+## [11,]  0.192589192
+## [12,]  0.428570759
+## [13,] -0.009794482
+## [14,] -1.778155296
+## [15,]  0.041734069
+## [16,] -0.003374780
+## [17,] -0.504458222
+## [18,]  0.548201132
+## [19,]  0.259492611
+## [20,]  0.003590935</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k1=<span class="kw">c</span>(<span class="fl">0.031</span>,-<span class="fl">0.493</span>,<span class="fl">0.008</span>);k1</code></pre></div>
+<pre><code>## [1]  0.031 -0.493  0.008</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u11=<span class="kw">scale</span>(ex1)[,<span class="dv">1</span>:<span class="dv">3</span>]%*%<span class="kw">t</span>(<span class="kw">t</span>(k1))
+u11</code></pre></div>
+<pre><code>##              [,1]
+##  [1,] -0.08357983
+##  [2,] -0.23783946
+##  [3,] -0.38012777
+##  [4,]  0.04729113
+##  [5,]  0.06343860
+##  [6,] -0.08822264
+##  [7,] -0.35974702
+##  [8,]  0.20531739
+##  [9,]  0.69405315
+## [10,]  0.33852484
+## [11,]  0.19673335
+## [12,]  0.34915331
+## [13,]  0.19343338
+## [14,] -1.55294506
+## [15,] -0.08550679
+## [16,] -0.21042227
+## [17,] -0.25194249
+## [18,]  0.49182098
+## [19,]  0.33881690
+## [20,]  0.33175030</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B=<span class="kw">solve</span>(s22)%*%s21%*%<span class="kw">solve</span>(s11)%*%s12
 B</code></pre></div>
 <pre><code>##            y1         y2          y3
@@ -374,37 +460,63 @@ B</code></pre></div>
 ## [3,]  0.5421327  0.9371926 -0.2275921</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">eigen</span>(B)$values)</code></pre></div>
 <pre><code>## [1] 0.79560815 0.20055604 0.07257029</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A0=<span class="kw">prod</span>(<span class="dv">1</span>-<span class="kw">eigen</span>(A)$values)
-A0</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v1=<span class="kw">scale</span>(ex1)[,<span class="dv">4</span>:<span class="dv">6</span>]%*%<span class="kw">eigen</span>(B)$vectors[,<span class="dv">1</span>];v1</code></pre></div>
+<pre><code>##              [,1]
+##  [1,] -0.09596723
+##  [2,]  0.71700920
+##  [3,]  0.76491740
+##  [4,]  0.03728404
+##  [5,] -0.42811434
+##  [6,]  0.54137496
+##  [7,]  0.29896638
+##  [8,]  0.11422255
+##  [9,] -1.29213186
+## [10,]  0.17790073
+## [11,] -0.39350907
+## [12,] -0.52661117
+## [13,] -0.74610528
+## [14,]  1.42618381
+## [15,]  0.72020088
+## [16,] -0.42371890
+## [17,]  0.88430330
+## [18,] -1.05154730
+## [19,] -1.26193428
+## [20,]  0.53727617</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k2=<span class="kw">c</span>(<span class="fl">0.066</span>,<span class="fl">0.017</span>,-<span class="fl">0.014</span>)
+k2</code></pre></div>
+<pre><code>## [1]  0.066  0.017 -0.014</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(<span class="kw">t</span>(k2))</code></pre></div>
+<pre><code>##        [,1]
+## [1,]  0.066
+## [2,]  0.017
+## [3,] -0.014</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v11=<span class="kw">scale</span>(ex1)[,<span class="dv">4</span>:<span class="dv">6</span>]%*%<span class="kw">t</span>(<span class="kw">t</span>(k2))
+<span class="kw">cor</span>(u1,v1)</code></pre></div>
+<pre><code>##            [,1]
+## [1,] -0.7956082</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(u11,v11)</code></pre></div>
+<pre><code>##           [,1]
+## [1,] 0.6287931</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A01=<span class="kw">prod</span>(<span class="dv">1</span>-<span class="kw">eigen</span>(A)$values)
+A01</code></pre></div>
 <pre><code>## [1] 0.3503905</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Q0=-(<span class="dv">20-1</span><span class="fl">-0.5</span>*(<span class="dv">3+3+1</span>))*<span class="kw">log</span>(A0)
-pr=<span class="dv">1</span>-<span class="kw">pchisq</span>(Q0,<span class="dv">9</span>)
-pr</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Q01=-(<span class="dv">20-1</span><span class="fl">-0.5</span>*(<span class="dv">3+3+1</span>))*<span class="kw">log</span>(A01)
+Q01</code></pre></div>
+<pre><code>## [1] 16.25496</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pr1=<span class="dv">1</span>-<span class="kw">pchisq</span>(Q01,<span class="dv">9</span>)
+pr1</code></pre></div>
 <pre><code>## [1] 0.06174456</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1=<span class="kw">cancor</span>(x,y)
-m1</code></pre></div>
-<pre><code>## $cor
-## [1] 0.79560815 0.20055604 0.07257029
-## 
-## $xcoef
-##            [,1]         [,2]         [,3]
-## x1 -0.007204730 -0.017508896  0.001774541
-## x2  0.113157401  0.084590855 -0.036255405
-## x3 -0.001881052 -0.007353232 -0.033433269
-## 
-## $ycoef
-##            [,1]          [,2]         [,3]
-## y1 -0.015167589 -0.0162979716  0.056270024
-## y2 -0.003864790  0.0004528082 -0.004535007
-## y3  0.003205298  0.0047521419  0.001873747
-## 
-## $xcenter
-##    x1    x2    x3 
-## 178.6  35.4  56.1 
-## 
-## $ycenter
-##     y1     y2     y3 
-##   9.45 145.55  70.30</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##################
+
+A02=(<span class="dv">1</span>-<span class="kw">eigen</span>(A)$values[<span class="dv">2</span>])*(<span class="dv">1</span>-<span class="kw">eigen</span>(A)$values[<span class="dv">3</span>])
+A02</code></pre></div>
+<pre><code>## [1] 0.9547227</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Q02=-(<span class="dv">20-1</span><span class="fl">-0.5</span>*(<span class="dv">3+3+1</span>))*<span class="kw">log</span>(A02)
+Q02</code></pre></div>
+<pre><code>## [1] 0.7181831</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pr2=<span class="dv">1</span>-<span class="kw">pchisq</span>(Q02,<span class="dv">4</span>)
+pr2</code></pre></div>
+<pre><code>## [1] 0.9490678</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corcoef.test&lt;-function(r, n, p, q, <span class="dt">alpha=</span><span class="fl">0.1</span>){
   <span class="co">#r为相关系数 n为样本个数 且n&gt;p+q</span>
   m&lt;-<span class="kw">length</span>(r);  Q&lt;-<span class="kw">rep</span>(<span class="dv">0</span>, m);  lambda &lt;-<span class="st"> </span><span class="dv">1</span>
