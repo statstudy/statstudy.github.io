@@ -248,6 +248,7 @@ div.tocify {
 </div>
 
 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;E:</span><span class="ch">\\</span><span class="st">ebook(2007-8-30)</span><span class="ch">\\</span><span class="st">Graphical Models(2016-01-11)</span><span class="ch">\\</span><span class="st">Probabilistic Graphical Models Principles and Techniques</span><span class="ch">\\</span><span class="st">&quot;</span>)</code></pre></div>
 <div class="section level2">
 <h2>工具的安装</h2>
 <p>首先执行下面的代码删除以前的安装：</p>
@@ -285,9 +286,9 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getFirehoseAnalyzeDates</span>(<span class="dt">last=</span><span class="dv">3</span>)</code></pre></div>
 <pre><code>## [1] &quot;20160128&quot; &quot;20150821&quot; &quot;20150402&quot;</code></pre>
 <p>选择第三个日期，加载数据：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hnscData =<span class="st"> </span><span class="kw">getFirehoseData</span> (<span class="dt">dataset=</span><span class="st">&quot;HNSC&quot;</span>, <span class="dt">runDate=</span><span class="st">&quot;20150402&quot;</span>,<span class="dt">forceDownload =</span> <span class="ot">TRUE</span>,<span class="dt">Clinic=</span><span class="ot">TRUE</span>, <span class="dt">Mutation=</span>F)</code></pre></div>
-<pre><code>## gdac.broadinstitute.org_HNSC.Clinical_Pick_Tier1.Level_4.2015040200.0.0.tar.gz</code></pre>
-<pre><code>## gdac.broadinstitute.org_HNSC.Clinical_Pick_Tier1.Level_4.2015040200.0.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hnscData =<span class="st"> </span><span class="kw">getFirehoseData</span> (<span class="dt">dataset=</span><span class="st">&quot;HNSC&quot;</span>, <span class="dt">runDate=</span><span class="st">&quot;20150402&quot;</span>,<span class="dt">forceDownload =</span> <span class="ot">TRUE</span>,<span class="dt">Clinic=</span><span class="ot">TRUE</span>, <span class="dt">Mutation=</span>F)
+<span class="kw">save</span>(hnscData,<span class="dt">file=</span><span class="st">&quot;data.RData&quot;</span>)
+<span class="kw">rm</span>(hnscData)</code></pre></div>
 </div>
 <div class="section level2">
 <h2>载入数据</h2>
@@ -298,78 +299,521 @@ div.tocify {
 <pre><code>## Available data types:</code></pre>
 <pre><code>## Clinical: A data frame, dim: 522 23</code></pre>
 <pre><code>## To export data, you may use getData() function.</code></pre>
-<p>到此数据加载完成，显示一下前三行数据：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(hnscd)</code></pre></div>
+<p>到此数据加载完成，显示一下前15行数据：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)</code></pre></div>
+<pre><code>## Warning: package 'knitr' was built under R version 3.4.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(hnscd[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,],<span class="dt">digits=</span><span class="dv">3</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Composite Element REF</th>
+<th align="left">years_to_birth</th>
+<th align="left">vital_status</th>
+<th align="left">days_to_death</th>
+<th align="left">days_to_last_followup</th>
+<th align="left">primary_site_of_disease</th>
+<th align="left">neoplasm_diseasestage</th>
+<th align="left">pathology_T_stage</th>
+<th align="left">pathology_N_stage</th>
+<th align="left">pathology_M_stage</th>
+<th align="left">dcc_upload_date</th>
+<th align="left">gender</th>
+<th align="left">date_of_initial_pathologic_diagnosis</th>
+<th align="left">days_to_last_known_alive</th>
+<th align="left">radiation_therapy</th>
+<th align="left">histological_type</th>
+<th align="left">radiations_radiation_regimenindication</th>
+<th align="left">number_pack_years_smoked</th>
+<th align="left">year_of_tobacco_smoking_onset</th>
+<th align="left">number_of_lymph_nodes</th>
+<th align="left">race</th>
+<th align="left">ethnicity</th>
+<th align="left">batch_number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>tcga.4p.aa8j</td>
+<td align="left">value</td>
+<td align="left">66</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">102</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t2</td>
+<td align="left">n2c</td>
+<td align="left">mx</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2013</td>
+<td align="left">NA</td>
+<td align="left">yes</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">6</td>
+<td align="left">black or african american</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">403.15.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.4074</td>
+<td align="left">value</td>
+<td align="left">69</td>
+<td align="left">1</td>
+<td align="left">462</td>
+<td align="left">462</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t2</td>
+<td align="left">n2c</td>
+<td align="left">m0</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2003</td>
+<td align="left">437</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">51</td>
+<td align="left">1951</td>
+<td align="left">5</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.4075</td>
+<td align="left">value</td>
+<td align="left">49</td>
+<td align="left">1</td>
+<td align="left">283</td>
+<td align="left">283</td>
+<td align="left">head and neck</td>
+<td align="left">stage iii</td>
+<td align="left">t3</td>
+<td align="left">n0</td>
+<td align="left">m0</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2004</td>
+<td align="left">278</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">30</td>
+<td align="left">1974</td>
+<td align="left">0</td>
+<td align="left">black or african american</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.4076</td>
+<td align="left">value</td>
+<td align="left">39</td>
+<td align="left">1</td>
+<td align="left">415</td>
+<td align="left">415</td>
+<td align="left">head and neck</td>
+<td align="left">NA</td>
+<td align="left">tx</td>
+<td align="left">nx</td>
+<td align="left">NA</td>
+<td align="left">9-10-2014</td>
+<td align="left">male</td>
+<td align="left">2003</td>
+<td align="left">236</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">30</td>
+<td align="left">1983</td>
+<td align="left">NA</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.58.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.4077</td>
+<td align="left">value</td>
+<td align="left">45</td>
+<td align="left">1</td>
+<td align="left">1134</td>
+<td align="left">NA</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t4a</td>
+<td align="left">n0</td>
+<td align="left">m0</td>
+<td align="left">19-3-2015</td>
+<td align="left">female</td>
+<td align="left">2003</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">30</td>
+<td align="left">1983</td>
+<td align="left">NA</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.4078</td>
+<td align="left">value</td>
+<td align="left">83</td>
+<td align="left">1</td>
+<td align="left">276</td>
+<td align="left">276</td>
+<td align="left">head and neck</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2003</td>
+<td align="left">170</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">75</td>
+<td align="left">1944</td>
+<td align="left">4</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.5149</td>
+<td align="left">value</td>
+<td align="left">47</td>
+<td align="left">1</td>
+<td align="left">806</td>
+<td align="left">248</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t3</td>
+<td align="left">n2c</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2010</td>
+<td align="left">248</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">60</td>
+<td align="left">1980</td>
+<td align="left">5</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.5151</td>
+<td align="left">value</td>
+<td align="left">72</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">722</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t4a</td>
+<td align="left">n0</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2010</td>
+<td align="left">190</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">20</td>
+<td align="left">1962</td>
+<td align="left">0</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.5152</td>
+<td align="left">value</td>
+<td align="left">56</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">1288</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t4a</td>
+<td align="left">n0</td>
+<td align="left">m0</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2009</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">0</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">145.62.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.5153</td>
+<td align="left">value</td>
+<td align="left">51</td>
+<td align="left">1</td>
+<td align="left">1762</td>
+<td align="left">1762</td>
+<td align="left">head and neck</td>
+<td align="left">NA</td>
+<td align="left">t2</td>
+<td align="left">nx</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2005</td>
+<td align="left">1616</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">54.67.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.5555</td>
+<td align="left">value</td>
+<td align="left">54</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">520</td>
+<td align="left">head and neck</td>
+<td align="left">stage iva</td>
+<td align="left">t3</td>
+<td align="left">n2c</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2010</td>
+<td align="left">186</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">62</td>
+<td align="left">NA</td>
+<td align="left">1</td>
+<td align="left">black or african american</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.5556</td>
+<td align="left">value</td>
+<td align="left">58</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">725</td>
+<td align="left">head and neck</td>
+<td align="left">stage ii</td>
+<td align="left">t2</td>
+<td align="left">n0</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">female</td>
+<td align="left">2010</td>
+<td align="left">179</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">60</td>
+<td align="left">1968</td>
+<td align="left">0</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.5557</td>
+<td align="left">value</td>
+<td align="left">41</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">623</td>
+<td align="left">head and neck</td>
+<td align="left">stage iii</td>
+<td align="left">t1</td>
+<td align="left">n1</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">female</td>
+<td align="left">2010</td>
+<td align="left">242</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">no</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">1</td>
+<td align="left">NA</td>
+<td align="left">hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+<tr class="even">
+<td>tcga.ba.5558</td>
+<td align="left">value</td>
+<td align="left">65</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">1636</td>
+<td align="left">head and neck</td>
+<td align="left">NA</td>
+<td align="left">tx</td>
+<td align="left">nx</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2006</td>
+<td align="left">1636</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">0</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+<tr class="odd">
+<td>tcga.ba.5559</td>
+<td align="left">value</td>
+<td align="left">71</td>
+<td align="left">0</td>
+<td align="left">NA</td>
+<td align="left">1747</td>
+<td align="left">head and neck</td>
+<td align="left">NA</td>
+<td align="left">tx</td>
+<td align="left">nx</td>
+<td align="left">NA</td>
+<td align="left">19-3-2015</td>
+<td align="left">male</td>
+<td align="left">2006</td>
+<td align="left">1747</td>
+<td align="left">NA</td>
+<td align="left">head and neck squamous cell carcinoma</td>
+<td align="left">yes</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">4</td>
+<td align="left">white</td>
+<td align="left">not hispanic or latino</td>
+<td align="left">83.64.0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hnscd<span class="op">$</span>years_to_birth</code></pre></div>
+<pre><code>##   [1] &quot;66&quot; &quot;69&quot; &quot;49&quot; &quot;39&quot; &quot;45&quot; &quot;83&quot; &quot;47&quot; &quot;72&quot; &quot;56&quot; &quot;51&quot; &quot;54&quot; &quot;58&quot; &quot;41&quot; &quot;65&quot;
+##  [15] &quot;71&quot; &quot;53&quot; &quot;62&quot; &quot;60&quot; &quot;75&quot; &quot;47&quot; &quot;28&quot; &quot;61&quot; &quot;59&quot; &quot;77&quot; &quot;57&quot; &quot;46&quot; &quot;59&quot; &quot;41&quot;
+##  [29] &quot;24&quot; &quot;44&quot; &quot;70&quot; &quot;80&quot; &quot;49&quot; &quot;62&quot; &quot;62&quot; &quot;59&quot; &quot;50&quot; &quot;68&quot; &quot;48&quot; &quot;52&quot; &quot;73&quot; &quot;66&quot;
+##  [43] &quot;50&quot; &quot;56&quot; &quot;67&quot; &quot;43&quot; &quot;61&quot; &quot;40&quot; &quot;58&quot; &quot;64&quot; &quot;63&quot; &quot;69&quot; &quot;84&quot; &quot;47&quot; &quot;64&quot; &quot;65&quot;
+##  [57] &quot;52&quot; &quot;61&quot; &quot;72&quot; &quot;45&quot; &quot;61&quot; &quot;67&quot; &quot;60&quot; &quot;68&quot; &quot;56&quot; &quot;56&quot; &quot;73&quot; &quot;62&quot; &quot;63&quot; &quot;61&quot;
+##  [71] &quot;70&quot; &quot;52&quot; &quot;70&quot; &quot;19&quot; &quot;53&quot; &quot;71&quot; &quot;79&quot; &quot;75&quot; &quot;48&quot; &quot;64&quot; &quot;56&quot; &quot;60&quot; &quot;59&quot; &quot;68&quot;
+##  [85] &quot;80&quot; &quot;48&quot; &quot;55&quot; &quot;38&quot; &quot;51&quot; &quot;60&quot; &quot;89&quot; &quot;78&quot; &quot;55&quot; &quot;56&quot; &quot;53&quot; &quot;57&quot; &quot;66&quot; &quot;56&quot;
+##  [99] &quot;64&quot; &quot;55&quot; &quot;85&quot; &quot;61&quot; &quot;58&quot; &quot;63&quot; &quot;49&quot; &quot;73&quot; &quot;66&quot; &quot;47&quot; &quot;64&quot; &quot;61&quot; &quot;67&quot; &quot;78&quot;
+## [113] &quot;58&quot; &quot;66&quot; &quot;53&quot; &quot;63&quot; &quot;61&quot; &quot;60&quot; &quot;60&quot; &quot;71&quot; &quot;67&quot; &quot;60&quot; &quot;50&quot; &quot;59&quot; &quot;48&quot; &quot;46&quot;
+## [127] &quot;40&quot; &quot;47&quot; &quot;57&quot; &quot;57&quot; &quot;59&quot; &quot;61&quot; &quot;59&quot; &quot;40&quot; &quot;82&quot; &quot;59&quot; &quot;65&quot; &quot;67&quot; &quot;61&quot; &quot;46&quot;
+## [141] &quot;69&quot; &quot;73&quot; &quot;87&quot; &quot;74&quot; &quot;87&quot; &quot;52&quot; &quot;50&quot; &quot;69&quot; &quot;79&quot; &quot;63&quot; &quot;69&quot; &quot;52&quot; &quot;65&quot; &quot;77&quot;
+## [155] &quot;71&quot; &quot;61&quot; &quot;59&quot; &quot;83&quot; &quot;40&quot; &quot;75&quot; &quot;80&quot; &quot;77&quot; &quot;76&quot; &quot;51&quot; &quot;63&quot; &quot;88&quot; &quot;56&quot; NA  
+## [169] &quot;59&quot; &quot;69&quot; &quot;76&quot; &quot;78&quot; &quot;58&quot; &quot;73&quot; &quot;51&quot; &quot;48&quot; &quot;53&quot; &quot;35&quot; &quot;71&quot; &quot;59&quot; &quot;38&quot; &quot;58&quot;
+## [183] &quot;59&quot; &quot;68&quot; &quot;51&quot; &quot;56&quot; &quot;66&quot; &quot;53&quot; &quot;47&quot; &quot;62&quot; &quot;67&quot; &quot;50&quot; &quot;68&quot; &quot;60&quot; &quot;78&quot; &quot;69&quot;
+## [197] &quot;66&quot; &quot;60&quot; &quot;52&quot; &quot;54&quot; &quot;59&quot; &quot;72&quot; &quot;45&quot; &quot;45&quot; &quot;66&quot; &quot;67&quot; &quot;83&quot; &quot;58&quot; &quot;78&quot; &quot;58&quot;
+## [211] &quot;49&quot; &quot;79&quot; &quot;42&quot; &quot;69&quot; &quot;70&quot; &quot;55&quot; &quot;67&quot; &quot;36&quot; &quot;67&quot; &quot;26&quot; &quot;70&quot; &quot;80&quot; &quot;44&quot; &quot;53&quot;
+## [225] &quot;60&quot; &quot;64&quot; &quot;68&quot; &quot;53&quot; &quot;61&quot; &quot;73&quot; &quot;68&quot; &quot;60&quot; &quot;57&quot; &quot;65&quot; &quot;62&quot; &quot;52&quot; &quot;58&quot; &quot;76&quot;
+## [239] &quot;63&quot; &quot;64&quot; &quot;63&quot; &quot;59&quot; &quot;60&quot; &quot;62&quot; &quot;50&quot; &quot;66&quot; &quot;53&quot; &quot;26&quot; &quot;50&quot; &quot;57&quot; &quot;62&quot; &quot;60&quot;
+## [253] &quot;53&quot; &quot;66&quot; &quot;67&quot; &quot;68&quot; &quot;71&quot; &quot;87&quot; &quot;60&quot; &quot;80&quot; &quot;51&quot; &quot;73&quot; &quot;74&quot; &quot;41&quot; &quot;79&quot; &quot;64&quot;
+## [267] &quot;57&quot; &quot;65&quot; &quot;80&quot; &quot;59&quot; &quot;74&quot; &quot;67&quot; &quot;48&quot; &quot;49&quot; &quot;61&quot; &quot;65&quot; &quot;74&quot; &quot;39&quot; &quot;54&quot; &quot;87&quot;
+## [281] &quot;53&quot; &quot;85&quot; &quot;66&quot; &quot;80&quot; &quot;76&quot; &quot;49&quot; &quot;61&quot; &quot;82&quot; &quot;64&quot; &quot;34&quot; &quot;53&quot; &quot;67&quot; &quot;77&quot; &quot;69&quot;
+## [295] &quot;60&quot; &quot;50&quot; &quot;62&quot; &quot;55&quot; &quot;63&quot; &quot;64&quot; &quot;62&quot; &quot;58&quot; &quot;55&quot; &quot;32&quot; &quot;57&quot; &quot;64&quot; &quot;49&quot; &quot;67&quot;
+## [309] &quot;43&quot; &quot;61&quot; &quot;64&quot; &quot;74&quot; &quot;78&quot; &quot;60&quot; &quot;29&quot; &quot;62&quot; &quot;76&quot; &quot;60&quot; &quot;65&quot; &quot;67&quot; &quot;77&quot; &quot;73&quot;
+## [323] &quot;47&quot; &quot;55&quot; &quot;56&quot; &quot;79&quot; &quot;49&quot; &quot;64&quot; &quot;57&quot; &quot;77&quot; &quot;87&quot; &quot;38&quot; &quot;66&quot; &quot;48&quot; &quot;57&quot; &quot;82&quot;
+## [337] &quot;69&quot; &quot;46&quot; &quot;64&quot; &quot;59&quot; &quot;87&quot; &quot;75&quot; &quot;47&quot; &quot;61&quot; &quot;75&quot; &quot;72&quot; &quot;65&quot; &quot;82&quot; &quot;48&quot; &quot;24&quot;
+## [351] &quot;42&quot; &quot;82&quot; &quot;78&quot; &quot;85&quot; &quot;53&quot; &quot;69&quot; &quot;65&quot; &quot;61&quot; &quot;69&quot; &quot;68&quot; &quot;58&quot; &quot;65&quot; &quot;79&quot; &quot;82&quot;
+## [365] &quot;77&quot; &quot;53&quot; &quot;47&quot; &quot;82&quot; &quot;69&quot; &quot;59&quot; &quot;50&quot; &quot;61&quot; &quot;73&quot; &quot;64&quot; &quot;55&quot; &quot;62&quot; &quot;52&quot; &quot;59&quot;
+## [379] &quot;61&quot; &quot;67&quot; &quot;65&quot; &quot;44&quot; &quot;62&quot; &quot;57&quot; &quot;50&quot; &quot;67&quot; &quot;43&quot; &quot;52&quot; &quot;64&quot; &quot;73&quot; &quot;52&quot; &quot;66&quot;
+## [393] &quot;70&quot; &quot;51&quot; &quot;62&quot; &quot;57&quot; &quot;58&quot; &quot;47&quot; &quot;53&quot; &quot;48&quot; &quot;47&quot; &quot;58&quot; &quot;48&quot; &quot;66&quot; &quot;72&quot; &quot;67&quot;
+## [407] &quot;62&quot; &quot;54&quot; &quot;51&quot; &quot;47&quot; &quot;75&quot; &quot;70&quot; &quot;73&quot; &quot;75&quot; &quot;54&quot; &quot;50&quot; &quot;35&quot; &quot;65&quot; &quot;57&quot; &quot;60&quot;
+## [421] &quot;62&quot; &quot;69&quot; &quot;74&quot; &quot;52&quot; &quot;62&quot; &quot;63&quot; &quot;58&quot; &quot;51&quot; &quot;61&quot; &quot;41&quot; &quot;74&quot; &quot;56&quot; &quot;79&quot; &quot;56&quot;
+## [435] &quot;65&quot; &quot;49&quot; &quot;60&quot; &quot;68&quot; &quot;55&quot; &quot;57&quot; &quot;76&quot; &quot;63&quot; &quot;54&quot; &quot;70&quot; &quot;72&quot; &quot;43&quot; &quot;69&quot; &quot;53&quot;
+## [449] &quot;55&quot; &quot;41&quot; &quot;52&quot; &quot;30&quot; &quot;85&quot; &quot;55&quot; &quot;60&quot; &quot;53&quot; &quot;74&quot; &quot;53&quot; &quot;68&quot; &quot;51&quot; &quot;54&quot; &quot;49&quot;
+## [463] &quot;41&quot; &quot;49&quot; &quot;49&quot; &quot;50&quot; &quot;67&quot; &quot;47&quot; &quot;45&quot; &quot;49&quot; &quot;54&quot; &quot;79&quot; &quot;53&quot; &quot;55&quot; &quot;54&quot; &quot;79&quot;
+## [477] &quot;60&quot; &quot;61&quot; &quot;69&quot; &quot;65&quot; &quot;52&quot; &quot;71&quot; &quot;56&quot; &quot;66&quot; &quot;62&quot; &quot;59&quot; &quot;60&quot; &quot;56&quot; &quot;60&quot; &quot;68&quot;
+## [491] &quot;69&quot; &quot;60&quot; &quot;82&quot; &quot;58&quot; &quot;73&quot; &quot;53&quot; &quot;49&quot; &quot;82&quot; &quot;56&quot; &quot;51&quot; &quot;59&quot; &quot;62&quot; &quot;54&quot; &quot;67&quot;
+## [505] &quot;50&quot; &quot;54&quot; &quot;63&quot; &quot;75&quot; &quot;66&quot; &quot;42&quot; &quot;71&quot; &quot;80&quot; &quot;59&quot; &quot;68&quot; &quot;59&quot; &quot;79&quot; &quot;59&quot; &quot;72&quot;
+## [519] &quot;62&quot; &quot;58&quot; &quot;58&quot; &quot;69&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hnscd[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</code></pre></div>
+<pre><code>##              years_to_birth vital_status
+## tcga.4p.aa8j             66            0
+## tcga.ba.4074             69            1
+## tcga.ba.4075             49            1
+## tcga.ba.4076             39            1
+## tcga.ba.4077             45            1
+## tcga.ba.4078             83            1
+## tcga.ba.5149             47            1
+## tcga.ba.5151             72            0
+## tcga.ba.5152             56            0
+## tcga.ba.5153             51            1
+## tcga.ba.5555             54            0
+## tcga.ba.5556             58            0
+## tcga.ba.5557             41            0
+## tcga.ba.5558             65            0
+## tcga.ba.5559             71            0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_hn &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(hnscd[,<span class="dv">2</span>])
+<span class="kw">summary</span>(num_hn)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##   19.00   53.00   61.00   60.89   69.00   89.00       1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(num_hn)</code></pre></div>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<p>上面的图形显示，522个案例的年龄基本半数集中在50到70之间。</p>
+<p>查看缺失数据：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">is.na</span>(hnscd[,<span class="dv">2</span>]))</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>结果显示有一个</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(<span class="kw">is.na</span>(hnscd[,<span class="dv">2</span>])<span class="op">==</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 168</code></pre>
+<p>是第168行的数据：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hnscd[<span class="dv">168</span>,]</code></pre></div>
 <pre><code>##              Composite Element REF years_to_birth vital_status
-## tcga.4p.aa8j                 value             66            0
-## tcga.ba.4074                 value             69            1
-## tcga.ba.4075                 value             49            1
-## tcga.ba.4076                 value             39            1
-## tcga.ba.4077                 value             45            1
-## tcga.ba.4078                 value             83            1
+## tcga.cq.a4ca                 value           &lt;NA&gt;            0
 ##              days_to_death days_to_last_followup primary_site_of_disease
-## tcga.4p.aa8j          &lt;NA&gt;                   102           head and neck
-## tcga.ba.4074           462                   462           head and neck
-## tcga.ba.4075           283                   283           head and neck
-## tcga.ba.4076           415                   415           head and neck
-## tcga.ba.4077          1134                  &lt;NA&gt;           head and neck
-## tcga.ba.4078           276                   276           head and neck
+## tcga.cq.a4ca          &lt;NA&gt;                  &lt;NA&gt;           head and neck
 ##              neoplasm_diseasestage pathology_T_stage pathology_N_stage
-## tcga.4p.aa8j             stage iva                t2               n2c
-## tcga.ba.4074             stage iva                t2               n2c
-## tcga.ba.4075             stage iii                t3                n0
-## tcga.ba.4076                  &lt;NA&gt;                tx                nx
-## tcga.ba.4077             stage iva               t4a                n0
-## tcga.ba.4078                  &lt;NA&gt;              &lt;NA&gt;              &lt;NA&gt;
+## tcga.cq.a4ca              stage ii                t2                n0
 ##              pathology_M_stage dcc_upload_date gender
-## tcga.4p.aa8j                mx       19-3-2015   male
-## tcga.ba.4074                m0       19-3-2015   male
-## tcga.ba.4075                m0       19-3-2015   male
-## tcga.ba.4076              &lt;NA&gt;       9-10-2014   male
-## tcga.ba.4077                m0       19-3-2015 female
-## tcga.ba.4078              &lt;NA&gt;       19-3-2015   male
+## tcga.cq.a4ca                m0       19-3-2015   male
 ##              date_of_initial_pathologic_diagnosis days_to_last_known_alive
-## tcga.4p.aa8j                                 2013                     &lt;NA&gt;
-## tcga.ba.4074                                 2003                      437
-## tcga.ba.4075                                 2004                      278
-## tcga.ba.4076                                 2003                      236
-## tcga.ba.4077                                 2003                     &lt;NA&gt;
-## tcga.ba.4078                                 2003                      170
+## tcga.cq.a4ca                                 &lt;NA&gt;                     &lt;NA&gt;
 ##              radiation_therapy                     histological_type
-## tcga.4p.aa8j               yes head and neck squamous cell carcinoma
-## tcga.ba.4074              &lt;NA&gt; head and neck squamous cell carcinoma
-## tcga.ba.4075              &lt;NA&gt; head and neck squamous cell carcinoma
-## tcga.ba.4076              &lt;NA&gt; head and neck squamous cell carcinoma
-## tcga.ba.4077              &lt;NA&gt; head and neck squamous cell carcinoma
-## tcga.ba.4078              &lt;NA&gt; head and neck squamous cell carcinoma
+## tcga.cq.a4ca               yes head and neck squamous cell carcinoma
 ##              radiations_radiation_regimenindication
-## tcga.4p.aa8j                                    yes
-## tcga.ba.4074                                     no
-## tcga.ba.4075                                    yes
-## tcga.ba.4076                                    yes
-## tcga.ba.4077                                    yes
-## tcga.ba.4078                                     no
+## tcga.cq.a4ca                                    yes
 ##              number_pack_years_smoked year_of_tobacco_smoking_onset
-## tcga.4p.aa8j                     &lt;NA&gt;                          &lt;NA&gt;
-## tcga.ba.4074                       51                          1951
-## tcga.ba.4075                       30                          1974
-## tcga.ba.4076                       30                          1983
-## tcga.ba.4077                       30                          1983
-## tcga.ba.4078                       75                          1944
-##              number_of_lymph_nodes                      race
-## tcga.4p.aa8j                     6 black or african american
-## tcga.ba.4074                     5                     white
-## tcga.ba.4075                     0 black or african american
-## tcga.ba.4076                  &lt;NA&gt;                     white
-## tcga.ba.4077                  &lt;NA&gt;                     white
-## tcga.ba.4078                     4                     white
-##                           ethnicity batch_number
-## tcga.4p.aa8j not hispanic or latino     403.15.0
-## tcga.ba.4074 not hispanic or latino      54.67.0
-## tcga.ba.4075 not hispanic or latino      54.67.0
-## tcga.ba.4076 not hispanic or latino      54.58.0
-## tcga.ba.4077 not hispanic or latino      54.67.0
-## tcga.ba.4078 not hispanic or latino      54.67.0</code></pre>
+## tcga.cq.a4ca                       80                          1963
+##              number_of_lymph_nodes race ethnicity batch_number
+## tcga.cq.a4ca                     0 &lt;NA&gt;      &lt;NA&gt;     265.34.0</code></pre>
 </div>
 
 
