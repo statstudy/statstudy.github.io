@@ -1,0 +1,280 @@
+ /*-------------------------------------------------------------------*/
+ /*       The Little SAS(r) Book: A Primer, Fourth Edition            */
+ /*          by Lora D. Delwiche and Susan J. Slaughter               */
+ /*       Copyright(c) 2008 by SAS Institute Inc., Cary, NC, USA      */
+ /*                   SAS Publications order                          */
+ /*                   ISBN 978-1-59994-725-9                          */
+ /*-------------------------------------------------------------------*/
+ /*                                                                   */
+ /* This material is provided "as is" by SAS Institute Inc.  There    */
+ /* are no warranties, expressed or implied, as to merchantability or */
+ /* fitness for a particular purpose regarding the materials or code  */
+ /* contained herein. The Institute is not responsible for errors     */
+ /* in this material as it now exists or will exist, nor does the     */
+ /* Institute provide technical support for it.                       */
+ /*                                                                   */
+ /*-------------------------------------------------------------------*/
+ /* Date Last Updated: 14AUG2008                                      */
+ /*-------------------------------------------------------------------*/
+ /* Questions or problem reports concerning this material may be      */
+ /* addressed to the author:                                          */
+ /*                                                                   */
+ /* SAS Institute Inc.                                                */
+ /* SAS Press                                                         */
+ /* Attn: Lora Delwiche and Susan Slaughter                           */
+ /* SAS Campus Drive                                                  */
+ /* Cary, NC   27513                                                  */
+ /*                                                                   */
+ /*                                                                   */
+ /* If you prefer, you can send email to:  saspress@sas.com           */
+ /* Use this for subject field:                                       */
+ /*     Comments for Lora Delwiche and Susan Slaughter                */
+ /*                                                                   */
+ /*-------------------------------------------------------------------*/
+
+
+/* Chapter 8 */
+
+/* Section 8.2 */
+
+/* Program */
+DATA chocolate;
+   INFILE 'c:\MyRawData\Choc.dat';
+   INPUT AgeGroup $ FavoriteFlavor $ Uniqueness @@;
+RUN;
+
+* Bar charts for favorite flavor;
+PROC SGPLOT DATA = chocolate;
+   VBAR FavoriteFlavor / GROUP = AgeGroup;
+   LABEL FavoriteFlavor = 'Flavor of Chocolate';
+   TITLE 'Favorite Chocolate Flavors by Age Group';
+RUN;
+PROC SGPLOT DATA = chocolate;
+   VBAR FavoriteFlavor / RESPONSE = Uniqueness STAT = MEAN;
+   LABEL FavoriteFlavor = 'Flavor of Chocolate';
+   TITLE 'Uniqueness Ratings for Chocolate Flavors';
+RUN;
+
+
+/* Section 8.3 */
+
+/* Program */
+DATA bikerace;
+   INFILE 'c:\MyRawData\Criterium.dat';
+   INPUT Division $ NumberLaps @@;
+RUN;
+* Create histogram;
+PROC SGPLOT DATA = bikerace;
+   HISTOGRAM NumberLaps / SHOWBINS;
+   DENSITY NumberLaps;
+   DENSITY NumberLaps / TYPE = KERNEL;
+   TITLE 'Bicycle Criterium Results';
+RUN;
+* Create box plot;
+PROC SGPLOT DATA = bikerace;
+   VBOX NumberLaps / CATEGORY = Division;
+   TITLE 'Bicycle Criterium Results';
+RUN;
+
+
+
+/* Section 8.4 */
+
+/* Program */
+DATA onionrings;
+   INFILE 'c:\MyRawData\Onions.dat';
+   INPUT VisTeam $ 1-20 CSales BSales OurHits VisHits OurRuns VisRuns;
+   Action = OurHits + VisHits + OurRuns + VisRuns;
+RUN;
+
+* Plot Bleacher Sales by Action;
+PROC SGPLOT DATA = onionrings;
+   SCATTER X = Action Y = BSales;
+   SCATTER X = Action Y = CSales;
+   XAXIS LABEL = 'Hits + Runs' VALUES = (0 TO 40 BY 10);
+   YAXIS LABEL = 'Number Sold';
+   LABEL BSales = 'Sales in Bleachers'
+         CSales = 'Sales at Stands';
+   TITLE 'Onion Ring Sales vs. Game Action';
+RUN;
+
+/* Section 8.5 */
+
+/* Program */
+DATA temperatures;
+   INFILE 'c:\MyRawData\Temps.dat';
+   INPUT Month IntFalls Raleigh Yuma @@;
+RUN;
+
+* Plot average high and low temperatures by city;
+PROC SGPLOT DATA = temperatures;
+   SERIES X = Month Y = IntFalls;
+   SERIES X = Month Y = Raleigh;
+   SERIES X = Month Y = Yuma;
+   REFLINE 32 75 / TRANSPARENCY = 0.5 LABEL = ('32 degrees' '75 degrees');
+   XAXIS TYPE = DISCRETE;
+   YAXIS LABEL = 'Average High Temperature (F)';
+   TITLE 'Temperatures by Month for International Falls, '
+      'Raleigh, and Yuma';
+RUN;
+
+
+
+/* Section 8.6 */
+
+/* Program */	
+DATA Olympic1500;
+  INFILE 'C:\MyRawData\Olympic1500.dat';
+  INPUT Year Men @@;
+RUN;
+PROC SGPLOT DATA=Olympic1500;
+  REG X=Year Y=Men;
+  LOESS X=Year Y=Men / NOMARKERS;
+  YAXIS LABEL='Time in Seconds';
+  TITLE "Olympic Times for Men's 1500 Meter Run";
+RUN;
+PROC SGPLOT DATA=Olympic1500;
+  PBSPLINE X=Year Y=Men/CLM NOLEGCLM;
+  YAXIS LABEL='Time in Seconds';
+  TITLE "Olympic Times for Men's 1500 Meter Run";
+RUN;
+
+
+/* Section 8.7 */
+
+/* Program */
+DATA class;
+   INFILE 'c:\MyRawData\Scores.dat';
+   INPUT Score @@;
+RUN;
+PROC UNIVARIATE DATA = class;
+   VAR Score;
+   TITLE;
+RUN;
+
+
+/* Section 8.8 */
+/* Program */
+ODS GRAPHICS ON;
+PROC UNIVARIATE DATA = class;
+   VAR Score;
+   HISTOGRAM Score/NORMAL;
+   PROBPLOT Score;
+   TITLE;
+RUN;
+
+
+
+/* Section 8.9 */
+
+/* Program */
+DATA booklengths;    
+   INFILE 'c:\MyRawData\Picbooks.dat';
+   INPUT NumberOfPages @@;
+RUN;
+*Produce summary statistics;
+PROC MEANS DATA=booklengths N MEAN MEDIAN CLM ALPHA=.10;
+   TITLE 'Summary of Picture Book Lengths';
+RUN;
+
+
+/* Section 8.10 */
+
+/* Program */
+DATA bus;
+   INFILE 'c:\MyRawData\Bus.dat';
+   INPUT BusType $  OnTimeOrLate $ @@;
+RUN;
+PROC FREQ DATA = bus;
+   TABLES BusType * OnTimeOrLate / CHISQ;
+   TITLE;
+RUN;
+
+
+/* Section 8.11 */
+/* Program */
+ODS GRAPHICS ON;
+PROC FREQ DATA = bus;
+   TABLES BusType * OnTimeOrLate;
+   TABLES BusType * OnTimeOrLate / PLOTS=FREQPLOT(TWOWAY=GROUPHORIZONTAL);
+   TITLE;
+RUN;
+ 
+
+
+/* Section 8.12 */
+
+/* Program */	
+DATA class;
+   INFILE 'c:\MyRawData\Exercise.dat';
+   INPUT Score Television Exercise @@;
+RUN;
+PROC CORR DATA = class;
+   VAR Television Exercise;
+   WITH Score;
+   TITLE 'Correlations for Test Scores';
+   TITLE2 'With Hours of Television and Exercise';
+RUN;
+
+
+/* Section 8.13 */
+/* Program */
+ODS GRAPHICS ON;
+PROC CORR DATA = class PLOTS = (SCATTER MATRIX);
+   VAR Television Exercise;
+   WITH Score;
+   TITLE 'Correlations for Test Scores';
+   TITLE2 'With Hours of Television and Exercise';
+RUN;
+ 
+/* Section 8.14 */
+
+/* Program */
+DATA hits;
+   INFILE 'c:\MyRawData\Baseball.dat';
+   INPUT Height Distance @@;
+RUN;
+* Perform regression analysis;
+PROC REG DATA = hits;
+   MODEL Distance = Height;
+   TITLE 'Results of Regression Analysis';
+RUN;
+
+
+
+/* Section 8.15 */
+/* Program */
+ODS GRAPHICS ON;
+PROC REG DATA = hits PLOTS(ONLY) = (DIAGNOSTICS FITPLOT);
+   MODEL Distance = Height;
+   TITLE 'Results of Regression Analysis';
+RUN;
+
+/* Section 8.16 */
+
+/* Program */
+DATA basket;
+   INFILE 'c:\MyRawData\Basketball.dat';
+   INPUT Team $ Height @@;
+RUN;
+* Use ANOVA to run one-way analysis of variance;
+ODS GRAPHICS ON;
+PROC ANOVA DATA = basket;
+   CLASS Team;
+   MODEL Height = Team;
+   MEANS Team / SCHEFFE;
+   TITLE "Girls' Heights on Basketball Teams";
+RUN;
+
+
+/* Section 8.17 */
+/* Program */
+PROC ANOVA DATA = basket;
+   CLASS Team;
+   MODEL Height = Team;
+   MEANS Team / SCHEFFE;
+   TITLE "Girls’ Heights on Basketball Teams";
+RUN;
+
+
+

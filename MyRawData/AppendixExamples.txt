@@ -1,0 +1,226 @@
+ /*-------------------------------------------------------------------*/
+ /*       The Little SAS(r) Book: A Primer, Fourth Edition            */
+ /*          by Lora D. Delwiche and Susan J. Slaughter               */
+ /*       Copyright(c) 2008 by SAS Institute Inc., Cary, NC, USA      */
+ /*                   SAS Publications order                          */
+ /*                   ISBN 978-1-59994-725-9                          */
+ /*-------------------------------------------------------------------*/
+ /*                                                                   */
+ /* This material is provided "as is" by SAS Institute Inc.  There    */
+ /* are no warranties, expressed or implied, as to merchantability or */
+ /* fitness for a particular purpose regarding the materials or code  */
+ /* contained herein. The Institute is not responsible for errors     */
+ /* in this material as it now exists or will exist, nor does the     */
+ /* Institute provide technical support for it.                       */
+ /*                                                                   */
+ /*-------------------------------------------------------------------*/
+ /* Date Last Updated: 14AUG2008                                      */
+ /*-------------------------------------------------------------------*/
+ /* Questions or problem reports concerning this material may be      */
+ /* addressed to the author:                                          */
+ /*                                                                   */
+ /* SAS Institute Inc.                                                */
+ /* SAS Press                                                         */
+ /* Attn: Lora Delwiche and Susan Slaughter                           */
+ /* SAS Campus Drive                                                  */
+ /* Cary, NC   27513                                                  */
+ /*                                                                   */
+ /*                                                                   */
+ /* If you prefer, you can send email to:  saspress@sas.com           */
+ /* Use this for subject field:                                       */
+ /*     Comments for Lora Delwiche and Susan Slaughter                */
+ /*                                                                   */
+ /*-------------------------------------------------------------------*/
+
+
+
+/* Appendix B */
+
+/* SPSS Program (page 315) */
+
+DATA LIST FILE =                
+  'c:\MyRawData\Survey.dat'	        
+  /Name 1-8 (A) Age 9-10 	          
+  Sex 12 Song1 TO Song5 13-22.	       
+VARIABLE LABELS	                    
+  Song1 'Black Water'	                
+  Song2 'Bennie and the Jets'	        
+  Song3 'Stayin Alive'	               
+  Song4 'Yellow Submarine'	           
+  Song5 'Only Time'.	            
+VALUE LABELS	                       
+  sex 1 'female' 2 'male'.	                   
+TITLE 'Music Market Survey'.    
+LIST.	                           
+FREQUENCIES	                     
+  VARIABLES = Song1.	               
+CROSSTABS	                          
+  /TABLES = Sex BY Song1.      	 
+SAVE OUTFILE =	
+  'c:\MySPSSDir\survey.sav'.
+
+
+/* SAS Program (page 315) */
+
+DATA 'c:\MySASLib\survey';
+   INFILE 'c:\MyRawData\Survey.dat';
+   INPUT Name $ 1-8 Age
+      Sex Song1-Song5;
+   LABEL Song1 = 'Black Water' 
+      Song2 = 'Bennie and the Jets'
+      Song3 = 'Stayin Alive'
+      Song4 = 'Yellow Submarine'
+      Song5 = 'Only Time';
+PROC FORMAT;
+   VALUE sex 1 = 'female'
+          2 = 'male';
+TITLE 'Music Market Survey';
+PROC PRINT;
+PROC FREQ;
+   TABLE Song1 Sex * Song1;
+   FORMAT Sex Sex.;
+RUN;
+
+/* Program (page 318) */
+
+LIBNAME myspss SPSS 'c:\MySPSSDir\survey.por';
+* Print the SPSS portable file;
+PROC PRINT DATA = myspss.getsurv;
+   TITLE 'Music Market Survey';
+RUN;
+* List the contents of the SPSS portable file;
+PROC CONTENTS DATA = myspss.getsurv;
+RUN;
+* Convert SPSS portable file to SAS data set;
+DATA 'c:\MySASLib\sassurvey';
+   SET myspss.getsurv;
+RUN;
+
+/* Program (page 320) */
+
+* Import an SPSS save file as a permanent SAS data set;
+LIBNAME radio 'c:\MySASLib'; 
+PROC IMPORT DATAFILE = 	
+            'c:\MySPSSDir\survey.sav'			            
+            OUT = radio.sassurvey 
+            DBMS = SAV 
+            REPLACE;
+RUN;
+* Print the new SAS data set;
+PROC PRINT DATA = radio.sassurvey;
+   TITLE 'Music Market Survey';
+RUN;
+
+
+/* First Program (page 321) */
+
+* Import an SPSS SAV file as a temporary SAS data set;
+PROC IMPORT DATAFILE = 
+ 	    'c:\MySPSSDir\survey.sav'
+	    OUT = sassurvey 
+            DBMS = SAV 
+            REPLACE;
+RUN;
+
+/* Second Program (page 321) */
+
+OPTIONS NOFMTERR;
+LIBNAME radio 'c:\MySASLib'; 
+* Print the SAS data set;
+PROC PRINT DATA = radio.sassurvey;
+   TITLE 'Music Market Survey';
+RUN;
+
+
+/* Appendix F */
+
+/* Program (page 327) */
+
+LIBNAME sports 'c:\MySASLib';
+PROC SQL;
+   CREATE TABLE sports.customer
+      (CustomerNumber num,
+       Name           char(17),
+       Address        char(20));
+
+   INSERT INTO sports.customer
+      VALUES (101, 'Murphy''s Sports ', '115 Main St.        ')
+      VALUES (102, 'Sun N Ski        ', '2106 Newberry Ave.  ')
+      VALUES (103, 'Sports Outfitters', '19 Cary Way         ')
+      VALUES (104, 'Cramer & Johnson ', '4106 Arlington Blvd.')
+      VALUES (105, 'Sports Savers    ', '2708 Broadway      ');
+
+   TITLE 'The Sports Customer Data';
+   SELECT *
+      FROM sports.customer;
+
+/* Program (page 328) */
+
+LIBNAME sports 'c:\MySASLib';
+DATA sports.customer;
+   INPUT CustomerNumber Name $ 5-21 Address $ 23-42;
+   DATALINES;
+101 Murphy's Sports   115 Main St.
+102 Sun N Ski         2106 Newberry Ave.
+103 Sports Outfitters 19 Cary Way
+104 Cramer & Johnson  4106 Arlington Blvd.
+105 Sports Savers     2708 Broadway
+   ;
+PROC PRINT DATA = sports.customer;
+TITLE 'The Sports Customer Data';
+RUN;
+/* First Program (page 329) */
+
+LIBNAME sports 'c:\MySASLib';
+PROC SQL;
+   TITLE 'Customer Number 102';
+   SELECT *
+      FROM sports.customer
+      WHERE CustomerNumber = 102;
+
+/* Second Program (page 329) */
+
+LIBNAME sports 'c:\MySASLib';
+DATA sunnski;
+   SET sports.customer;
+   IF CustomerNumber = 102;
+PROC PRINT DATA = sunnski;
+   TITLE 'Customer Number 102';
+RUN;
+/* Program (page 331) */
+
+LIBNAME sports 'c:\MySASLib';
+DATA outfitters;
+   SET sports.customer;
+   IF Name = 'Sports Outfitters';
+PROC PRINT DATA = outfitters;
+RUN;
+/* First Program (page 332) */
+
+LIBNAME sports 'c:\MySASLib';
+DATA outfitters;
+   SET sports.customer;
+   WHERE Name = 'Sports Outfitters';
+PROC PRINT DATA = outfitters;
+RUN;
+/* Second Program (page 332) */
+
+LIBNAME sports 'c:\MySASLib';
+DATA outfitters (WHERE = (Name = 'Sports Outfitters'));
+   SET sports.customer;
+PROC PRINT DATA = outfitters;
+RUN;
+/* Third Program (page 332) */
+
+LIBNAME sports 'c:\MySASLib';
+PROC PRINT DATA = sports.customer;
+   WHERE Name = 'Sports Outfitters';
+RUN;
+/* Program (page 333) */
+
+LIBNAME sports 'c:\MySASLib';
+PROC PRINT DATA = sports.customer (WHERE = (Name = 'Sports Outfitters'));
+RUN;
+
+
+
