@@ -15,7 +15,7 @@ output:
 
 ----------------
 
-（8月29日） [R 的安装](doc/R_setup.html)
+ [R 的安装](doc/R_setup.html)
 
  
 --------
@@ -25,11 +25,11 @@ output:
 
 ---
 
-（8月30日）[R 语言概述](doc/R_base_1.html)
+[R 语言概述](doc/R_base_1.html)
 
 -----
 
-（9月1日） [R 语言基础（一）：语法基础](doc/R_base_2.html)
+ [R 语言基础（一）：语法基础](doc/R_base_2.html)
 
 -----
 
@@ -38,11 +38,11 @@ output:
 -----
 
 
-（9月12日）[R语言基础（二）：绘图初步](doc/R_base_3.html)
+[R语言基础（二）：绘图初步](doc/R_base_3.html)
 
 -----
 
-（9月13日）[R语言基础（三）：数据管理](doc/R_base_4.html)
+[R语言基础（三）：数据管理](doc/R_base_4.html)
 
 ----
 
@@ -50,7 +50,7 @@ output:
 
 -----
 
-（9月20日） [R语言基础（四）: 编程以及高级数据管理](doc/R_base_5.html)
+[R语言基础（四）: 编程以及高级数据管理](doc/R_base_5.html)
 
 ----
 
@@ -58,21 +58,16 @@ output:
 
 ----
 
-
-（9月22日）[课程 测验 （一）](doc/project1.html)
-
-
-----
-
-[R 语言练习（三）](doc/R_base_exer3.pdf) （10月8号之前交）
+[课程 测验 （一）](doc/project1.html) 
+           [参考答案](doc/project1_so.html)
 
 ----
 
+[R 语言练习（三）](doc/R_base_exer3.pdf) [参考答案](doc/R_base_exer3_so.pdf)
+
+----
 
 [R语言：统计图形](doc/R_base_6.html)
-
-
-
 
 ----
 
@@ -80,6 +75,63 @@ output:
 
 ----
 
+[R语言：基本统计分析](doc/R_base_7.html)
+
+----
+
+[R语言与多元统计作业5 ](doc/project2.html) (11月1号之前交) [参考答案](doc/project2_ans.html)
+
+----
+
+[R语言：回归分析](doc/R_base_8.html)
+
+----
+
+[R语言使用频率最高的packages](doc/R_packages_lists.html)
+
+------
+
+[随机变量模拟数的生成](doc/R_sim_1.html)
+
+----
+
+[R语言与多元统计作业6 ](doc/R_sim_exer1.html) (11月8号之前交)
+
+----
+
 [多元统计基础：矩阵代数](doc/algebra_base.html)
 
 ----
+
+[多元统计基础：矩阵在R中的计算](doc/R_stat_matrix.html)
+
+----
+
+[多元正态分布](doc/R_multistat_1.html)
+
+----
+
+[多元正态总体的推断](doc/R_multistat_2_jh.html)
+
+----
+
+[主成份分析与因子分析](doc/R_multistat_4.html)
+
+----
+
+[聚类分析](doc/R_multistat_3.html)
+
+---
+
+[典则相关分析](doc/R_multistat_7.html)
+
+----
+
+[分类算法](doc/R_multistat_5.html)
+
+----
+
+[课程论文](doc/R_Final.html)
+
+----
+
